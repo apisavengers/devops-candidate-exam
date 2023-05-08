@@ -7,6 +7,6 @@ terraform {
     bucket = "3.devops.candidate.exam"
     key    = "andy.pham"
     region = "ap-south-1"
-    skip_credentials_validation = true
+    # skip_credentials_validation = true
   }
 }
