@@ -13,23 +13,29 @@ pipeline{
                 sh 'terraform validate'
             }
         }
+        stage("TF Remove Resource"){
+            steps{
+                echo "Executing Terraform Plan"
+                sh 'terraform state rm ap_route_table'
+            }
+        }
         stage("TF Plan"){
             steps{
                 echo "Executing Terraform Plan"
                 sh 'terraform plan'
             }
         }
-        stage("TF Apply"){
-            steps{
-                echo "Executing Terraform Apply"
-                sh 'terraform apply -auto-approve'
-            }
-        }
-        stage("Invoke Lambda"){
-            steps{
-                echo "Invoking your AWS Lambda"
-                sh 'aws lambda invoke --function-name andyphamlambda --log-type Tail result.txt'
-            }
-        }
+//        stage("TF Apply"){
+//            steps{
+//                echo "Executing Terraform Apply"
+//                sh 'terraform apply -auto-approve'
+//            }
+//        }
+//        stage("Invoke Lambda"){
+//            steps{
+//                echo "Invoking your AWS Lambda"
+//                sh 'aws lambda invoke --function-name andyphamlambda --log-type Tail result.txt'
+//            }
+//        }
     }
 }
