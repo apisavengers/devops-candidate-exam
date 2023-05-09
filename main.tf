@@ -47,3 +47,23 @@ resource "aws_security_group" "ap_SecurityGroup" {
 
   vpc_id = "${data.aws_vpc.vpc.id}"
 }
+
+# pushing lambda function
+data "archive_file" "lambda" {
+  type        = "zip"
+  output_path = "${path.module}/aws.lambda.py.zip"
+  source_file  = "${path.module}/lambda.py"
+}
+
+resource "aws_lambda_function" "ap_lambda" {
+  function_name    = "lambda"
+  role             = data.aws_iam_role.lambda.arn
+  handler          = "lambda.invoke_restapi"
+  runtime          = "python3.9"
+  filename         = "${path.module}/aws.lambda.py.zip"
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+  vpc_config {
+    subnet_ids = [aws_subnet.ap_subnet.id]
+    security_group_ids = [aws_security_group.ap_SecurityGroup.id]
+  }
+}
