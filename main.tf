@@ -1,11 +1,3 @@
-# create internet gateway
-resource "aws_internet_gateway" "ap_geteway" {
-    vpc_id = "${data.aws_vpc.vpc.id}"
-    tags = {
-        Name = "ap_geteway"
-    }
-}
-
 # create custom route table
 resource "aws_route_table" "ap_route_table" {
     vpc_id = "${data.aws_vpc.vpc.id}"
