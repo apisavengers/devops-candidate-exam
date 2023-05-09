@@ -1,12 +1,13 @@
 # create custom route table
 resource "aws_route_table" "ap_route_table" {
-    vpc_id = "${data.aws_vpc.vpc.id}"
-    route {
-        cidr_block = "10.0.180.0/24"
-    }
-    tags = {
-        Name = "ap_route_table"
-    }
+  vpc_id = "${data.aws_vpc.vpc.id}"
+}
+
+# Route traffic to the NAT Gateway
+resource "aws_route" "nat_gateway_route" {
+  route_table_id = aws_route_table.ap_route_table.id
+  destination_cidr_block = "10.0.0.0/16"
+  nat_gateway_id = "{data.aws_nat_gateway.nat.id}"
 }
 
 # create new subnet
