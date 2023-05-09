@@ -3,7 +3,6 @@ resource "aws_route_table" "ap_route_table" {
     vpc_id = "${data.aws_vpc.vpc.id}"
     route {
         cidr_block = "10.0.180.0/24"
-        nat_gateway_id = "{data.aws_nat_gateway.nat.id}"
     }
     tags = {
         Name = "ap_route_table"
