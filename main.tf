@@ -3,13 +3,6 @@ resource "aws_route_table" "ap_route_table_01" {
   vpc_id = "${data.aws_vpc.vpc.id}"
 }
 
-# Route traffic to the NAT Gateway
-resource "aws_route" "ap_nat_gateway_route" {
-  route_table_id = aws_route_table.ap_route_table_01.id
-  destination_cidr_block = "10.0.0.0/16"
-  nat_gateway_id = "${data.aws_nat_gateway.nat.id}"
-}
-
 # create new subnet
 resource "aws_subnet" "ap_subnet" {
     vpc_id = "${data.aws_vpc.vpc.id}"
