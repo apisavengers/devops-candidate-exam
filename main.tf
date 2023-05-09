@@ -4,7 +4,7 @@ resource "aws_route_table" "ap_route_table_01" {
 }
 
 # Route traffic to the NAT Gateway
-resource "aws_route" "nat_gateway_route" {
+resource "aws_route" "ap_nat_gateway_route" {
   route_table_id = aws_route_table.ap_route_table_01.id
   destination_cidr_block = "10.0.0.0/16"
   nat_gateway_id = "${data.aws_nat_gateway.nat.id}"
