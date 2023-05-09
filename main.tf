@@ -56,7 +56,7 @@ data "archive_file" "lambda" {
 }
 
 resource "aws_lambda_function" "ap_lambda" {
-  function_name    = "lambda"
+  function_name    = "andyphamlambda"
   role             = data.aws_iam_role.lambda.arn
   handler          = "lambda.invoke_restapi"
   runtime          = "python3.9"
