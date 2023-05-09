@@ -5,7 +5,7 @@ def invoke_restapi(event, context):
     api_uri = 'https://ij92qpvpma.execute-api.eu-west-1.amazonaws.com/candidate-email_serverless_lambda_stage/data'
     headers = {'X-Siemens-Auth': 'test'}
     payload = {
-        "subnet_id": "subnet id created from terraform",
+        "subnet_id": "vpc-00bf0d10a6a41600c",
         "name": "Andy Pham",
         "email": "andy.pham@siemens.com"
     }
