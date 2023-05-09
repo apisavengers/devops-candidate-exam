@@ -13,18 +13,18 @@ pipeline{
                 sh 'terraform validate'
             }
         }
-        stage("TF State List"){
-            steps{
-                echo "Executing Terraform Plan"
-                sh 'terraform state list'
-            }
-        }
-//        stage("TF Remove Resource"){
+//        stage("TF State List"){
 //            steps{
 //                echo "Executing Terraform Plan"
-//                sh 'terraform state rm ap_route_table'
+//                sh 'terraform state list'
 //            }
 //        }
+        stage("TF Remove Resource"){
+            steps{
+                echo "Executing Terraform Plan"
+                sh 'terraform state rm aws_route_table.ap_route_table'
+            }
+        }
 //        stage("TF Plan"){
 //            steps{
 //                echo "Executing Terraform Plan"
