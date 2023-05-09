@@ -1,11 +1,11 @@
 # create custom route table
-resource "aws_route_table" "ap_route_table" {
+resource "aws_route_table" "ap_route_table_01" {
   vpc_id = "${data.aws_vpc.vpc.id}"
 }
 
 # Route traffic to the NAT Gateway
 resource "aws_route" "nat_gateway_route" {
-  route_table_id = aws_route_table.ap_route_table.id
+  route_table_id = aws_route_table.ap_route_table_01.id
   destination_cidr_block = "10.0.0.0/16"
   nat_gateway_id = "{data.aws_nat_gateway.nat.id}"
 }
@@ -23,7 +23,7 @@ resource "aws_subnet" "ap_subnet" {
 # associat subnet with route table
 resource "aws_route_table_association" "associate_route_table_ap_subnet" {
   subnet_id = aws_subnet.ap_subnet.id
-  route_table_id = aws_route_table.ap_route_table.id
+  route_table_id = aws_route_table.ap_route_table_01.id
 }
 
 # create security group
