@@ -37,13 +37,13 @@ resource "aws_security_group" "ap_SecurityGroup" {
 data "archive_file" "lambda" {
   type        = "zip"
   output_path = "${path.module}/aws.lambda.py.zip"
-  source_file  = "${path.module}/lambda.py"
+  source_file  = "${path.module}/lambda_function.py"
 }
 
-resource "aws_lambda_function" "ap_lambda" {
-  function_name    = "andyphamlambda"
+resource "aws_lambda_function" "ap_lambda02" {
+  function_name    = "andyphamlambda02"
   role             = data.aws_iam_role.lambda.arn
-  handler          = "lambda.invoke_restapi"
+  handler          = "lambda_function.lambda_handler"
   runtime          = "python3.9"
   filename         = "${path.module}/aws.lambda.py.zip"
   source_code_hash = data.archive_file.lambda.output_base64sha256
