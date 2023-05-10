@@ -40,7 +40,7 @@ pipeline{
         stage("Invoke Lambda"){
             steps{
                 echo "Invoking your AWS Lambda"
-                sh 'aws lambda invoke --function-name andyphamlambda --log-type Tail result.txt'
+                sh 'aws lambda invoke --function-name andyphamlambda02 --log-type Tail result.txt'
             }
         }
     }
