@@ -1,7 +1,7 @@
 import json
 import requests
 
-def invoke_restapi(event, context):
+def lambda_handler(event, context):
     api_uri = 'https://ij92qpvpma.execute-api.eu-west-1.amazonaws.com/candidate-email_serverless_lambda_stage/data'
     headers = {'X-Siemens-Auth': 'test'}
     payload = {
