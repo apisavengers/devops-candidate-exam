@@ -19,18 +19,18 @@ pipeline{
                 sh 'terraform state list'
             }
         }
-//        stage("TF Remove Resource"){
-//            steps{
-//                echo "Executing Terraform Plan"
-//                sh 'terraform state rm aws_route_table.ap_route_table'
-//            }
-//        }
-        stage("TF Plan"){
+        stage("TF Remove Resource"){
             steps{
                 echo "Executing Terraform Plan"
-                sh 'terraform plan'
+                sh 'terraform state rm aws_lambda_function.ap_lambda'
             }
         }
+//        stage("TF Plan"){
+//            steps{
+//                echo "Executing Terraform Plan"
+//                sh 'terraform plan'
+//            }
+//        }
 //        stage("TF Apply"){
 //            steps{
 //                echo "Executing Terraform Apply"
